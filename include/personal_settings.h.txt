@@ -1,0 +1,7 @@
+#pragma once
+
+#define WIFISSID "SSID_WIFI"
+#define WIFIPASSWORD "PASS_WIFI"
+#define SN_ID "SN_email"
+#define SN_PASS "SN_pass"
+#define WITAI_API "API_KEY"
