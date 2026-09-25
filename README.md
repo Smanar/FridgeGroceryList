@@ -3,6 +3,11 @@ WIP ESP32 project using a small device with e-paper to make a Shopping list with
 
 
 ## Configuration
+You need:
+- The device, it's a ESP32-S3-ePaper-1.54 from waveshare
+- A SimpleNote account (free)
+- A wit.ai acount (free) https://wit.ai/apps
+
 Edit the file include/personal_settings.h.txt and rename it personal_settings.h.   
 Edit the file include/algorithm.h with your language.   
 
