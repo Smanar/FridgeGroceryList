@@ -596,6 +596,8 @@ bool connectWiFi(unsigned long timeoutMs)
     // Connect
     WiFi.begin(g_ssid.c_str(), g_password.c_str());
 
+    WiFi.setSleep(false); // TO TEST
+
     unsigned long t0 = millis();
     while (WiFi.status() != WL_CONNECTED && millis() - t0 < timeoutMs)
     {
@@ -818,8 +820,14 @@ void enterDeepSleep(int intervalSec)
 
     // Turn off RTC stuff
     esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_AUTO);
+
+
+#if 0
+    //TODO :  error: 'ESP_PD_DOMAIN_RTC_FAST_MEM' was not declared in this scope; did you mean 'ESP_PD_DOMAIN_RC_FAST'?
+
     // Fast RTC memory clearing (not required for standard RTC_DATA_ATTR variables)
     esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_OFF);
+#endif
 
     //shtc3.sleep(true); // Forces the SHTC3 into ultra-low power mode (0.5 µA)
 

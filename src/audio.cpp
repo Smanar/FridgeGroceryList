@@ -144,7 +144,7 @@ static bool es8311_open_regs() {
     es8311_write(0x01, 0x30);   // Clock manager: disable most clocks initially
     es8311_write(0x02, 0x00);   // Clock divider defaults
     es8311_write(0x03, 0x10);   // ADC OSR = 0x10 (initial; re-set in config_sample below)
-    es8311_write(0x16, 0x06);   // ADC/mic PGA gain — see set_mic_gain() below for why this is 0x06, not a raw bit pattern
+    es8311_write(0x16, 0x06);   // ADC/mic PGA gain — see set_mic_gain() below for why this is 0x06, not a raw bit pattern, 0 to 7, in 6 dB steps (6*6 = 36db)
     es8311_write(0x04, 0x10);   // DAC OSR initial (re-set in config_sample below)
     es8311_write(0x05, 0x00);   // ADC/DAC clock divider = 1
     es8311_write(0x0B, 0x00);   // System power ref
@@ -171,8 +171,7 @@ static bool es8311_open_regs() {
     // here (ADCL + DACR reference) whenever no_dac_ref == false, which is
     // the default/standard case — NOT 0x08. (0x08 is only correct if
     // no_dac_ref == true, i.e. you deliberately don't want a DAC reference
-    // on the right channel.) This was wrong in a previous version of this
-    // file and is a plausible cause of a weak/silent mic path.
+    // on the right channel.) This was wrong in a previous version of this file
     es8311_write(0x44, 0x58);
 
     return true;
